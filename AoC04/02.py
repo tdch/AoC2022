@@ -2,7 +2,9 @@ f = open('input.txt', 'r')
 #f = open('input-small.txt', 'r')
 
 suma=0
+liczba_linii=0
 for line in f:
+        liczba_linii +=1
         arr = line.rstrip('\n').split(',')
         pocz1=int(arr[0].split('-')[0])
         kon1 =int(arr[0].split('-')[1])
@@ -20,4 +22,5 @@ for line in f:
         #print(arr)
 
 
-print(suma)
+print("Trafione:",suma)
+print("Reszta:", liczba_linii - suma)
