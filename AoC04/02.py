@@ -10,7 +10,6 @@ for line in f:
         kon1 =int(arr[0].split('-')[1])
         pocz2=int(arr[1].split('-')[0])
         kon2 =int(arr[1].split('-')[1])
-        #print(pocz1,kon1,pocz2,kon2)
         if ((kon1<pocz2)):
             print("yes1-",pocz1,kon1,pocz2,kon2)
             suma=suma+1
@@ -19,7 +18,6 @@ for line in f:
             suma=suma+1
         else:
             print("no  -",pocz1,kon1,pocz2,kon2)
-        #print(arr)
 
 
 print("Trafione:",suma)
