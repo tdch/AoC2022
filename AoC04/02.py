@@ -11,13 +11,13 @@ for line in f:
         pocz2=int(arr[1].split('-')[0])
         kon2 =int(arr[1].split('-')[1])
         if ((kon1<pocz2)):
-            print("yes1-",pocz1,kon1,pocz2,kon2)
+#            print("yes1-",pocz1,kon1,pocz2,kon2)
             suma=suma+1
         elif ((kon2<pocz1)):
-            print("yes2-",pocz1,kon1,pocz2,kon2)
+#            print("yes2-",pocz1,kon1,pocz2,kon2)
             suma=suma+1
-        else:
-            print("no  -",pocz1,kon1,pocz2,kon2)
+#        else:
+#            print("no  -",pocz1,kon1,pocz2,kon2)
 
 
 print("Trafione:",suma)
