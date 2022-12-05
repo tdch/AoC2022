@@ -1,28 +1,25 @@
 f = open('input.txt', 'r')
 
-C1=['B','V','S','N','T','C','H','Q']
-C2=['W','D','B','G']
-C3=['F','W','R','T','S','Q','B']
-C4=['L','G','W','S','Z','J','D','N']
-C5=['M','P','D','V','F']
-C6=['F','W','J']
-C7=['L','N','Q','B','J','V']
-C8=['G','T','R','C','J','Q','S','N']
-C9=['J','S','Q','C','W','D','M']
+C1=[['B','V','S','N','T','C','H','Q'],
+['W','D','B','G'],
+['F','W','R','T','S','Q','B'],
+['L','G','W','S','Z','J','D','N'],
+['M','P','D','V','F'],
+['F','W','J'],
+['L','N','Q','B','J','V'],
+['G','T','R','C','J','Q','S','N'],
+['J','S','Q','C','W','D','M']]
 
 
-
+linenr=0
 for line in f:
+    linenr+=1
         #print(line.splitlines().split(' ')[1])
         #print(line.splitlines())
+        print(line)
         arr = line.split()
-        #print(arr)
+        print(linenr, arr[1])
 
 #---------X -
-        if (arr[1] == "X"):
-            if (arr[0]=="A"):
-                suma=suma+4
-            elif (arr[0]== 'B'):
-                suma=suma+1
-            elif (arr[0]== 'C'):
-                suma=suma+7
+        if (arr[0] == "move"):
+                print(arr[1], arr[3], arr[5])
