@@ -18,9 +18,7 @@ def drukuj(xCra):
 
 for line in f:
 
-
     arr = line.split(" ")
-
 
     if (len(arr)>0):
         if(arr[0] == "move"):
