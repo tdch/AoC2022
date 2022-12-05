@@ -30,12 +30,13 @@ for line in f:
 #          ile    arr[1]
 #          skad   arr[3]
 #          dokad  arr[5]
-            print("move ",arr[1]," from ",arr[3]," to ",arr[5])
-            drukuj(Cra)
-
+#            print("move ",arr[1]," from ",arr[3]," to ",arr[5])
+#            drukuj(Cra)
+            arr_temp=[]
             for x in range(int(arr[1])):
-                Cra[int(arr[5])-1].append((Cra[int(arr[3])-1]).pop())
-
+                arr_temp.append((Cra[int(arr[3])-1]).pop())
+            for x in range(int(arr[1])):
+                Cra[int(arr[5])-1].append(arr_temp.pop())
 #print(Cra)
 
 #drukuj(Cra)
