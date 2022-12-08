@@ -1,33 +1,54 @@
-f = open('input.txt', 'r')
+f = open('input-small.txt', 'r')
 suma=0
+arr=[]
+drzewo= {
+    "name" : "a",
+    "size" : 2,
+    "type" : "file",
+    "content": []
+}
+
+drzewo2 = {'name': '/', 'size': -1, 'type': 'dir', 'content': [drzewo, drzewo]}
+
+def pokazdrzewo(wciecie,drzewko):
+    if (drzewko["type"] == "file"):
+        print(wciecie, drzewko["name"], drzewko["size"])
+    else:
+        print(wciecie, drzewko["name"])
+        w=len(drzewko["content"])
+        if (len(drzewko["content"]) >= 1):
+            for x in range(len(drzewko["content"])):
+                pokazdrzewo(wciecie+"+--",drzewko["content"][x])
+#    for key, value in drzewko.items():
+#        if   (key == 'file'):
+#            print(wciecie,key, ' : ', value)
+#        elif (key == 'dir'):
+#            pokazdrzewo(wciecie + "+--", value)
+
+
+def pracuj(komenda, drzewo):
+    if   (komenda[0].isnumeric()):
+        pracuj_tworz_plik(komenda[1],drzewo)
+    elif (komenda[0] == "dir"):
+        pracuj_tworz_dir(komenda[1],drzewo)
+    elif (komenda[0] == "cd"):
+        pracuj(komenda[1], drzewo[komenda[1]])
+
+
+
 for line in f:
         #print(line.splitlines().split(' ')[1])
         #print(line.splitlines())
         arr = line.split()
-        #print(arr)
+        print(arr[0])
+#        pracuj(sciezka,arr)
 
-#---------X -
-        if (arr[1] == "X"):
-            if (arr[0]=="A"):
-                suma=suma+4
-            elif (arr[0]== 'B'):
-                suma=suma+1
-            elif (arr[0]== 'C'):
-                suma=suma+7
 
-        if (arr[1] == "Y"):
-            if (arr[0]=="A"):
-                suma=suma+8
-            elif (arr[0]== 'B'):
-                suma=suma+5
-            elif (arr[0]== 'C'):
-                suma=suma+2
+print(drzewo2)
+print("1\n")
 
-        if (arr[1] == "Z"):
-            if (arr[0]=="A"):
-                suma=suma+3
-            elif (arr[0]== 'B'):
-                suma=suma+9
-            elif (arr[0]== 'C'):
-                suma=suma+6
-print(suma)
+#pokazdrzewo("--",drzewo)
+#print("2\n")
+
+pokazdrzewo("--",drzewo2)
+print("3\n")
