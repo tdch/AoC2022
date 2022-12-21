@@ -4,7 +4,7 @@ class Tabela:
         self.tabelka=[ [self.pusty] ]
         self.rzedow=1
         self.kolumn=1
-        
+
 
     def powieksz_z_lewej(self, ile):
         for rzad in range(self.rzedow):
@@ -43,7 +43,7 @@ class Tabela:
         print("=====")
 
 tabliczka=Tabela()
-tabliczka.tabelka[0][0]=0
+tabliczka.tabelka[0][0]=1
 tabliczka.wypisz()
 tabliczka.powieksz_z_prawej(2)
 tabliczka.powieksz_z_lewej(2)
