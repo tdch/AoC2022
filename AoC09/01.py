@@ -1,26 +1,28 @@
 class Tabela:
     def __init__(self):
-        self.tabelka=[ [0] ]
+        self.pusty=0
+        self.tabelka=[ [self.pusty] ]
         self.rzedow=1
         self.kolumn=1
+        
 
     def powieksz_z_lewej(self, ile):
         for rzad in range(self.rzedow):
             for kolumna in range(ile):
-                self.tabelka[rzad].insert(0,0)
+                self.tabelka[rzad].insert(0,self.pusty)
                 self.kolumn+=1
 
     def powieksz_z_prawej(self, ile):
         for rzad in range(self.rzedow):
             for kolumna in range(ile):
-                self.tabelka[rzad].append(0)
+                self.tabelka[rzad].append(self.pusty)
                 self.kolumn+=1
 
     def powieksz_z_gory(self, ile):
         for iter in range(ile):
             tmp=[]
             for kolumna in range(self.kolumn):
-                tmp.append(0)
+                tmp.append(self.pusty)
             self.tabelka.insert(0,tmp)
             self.rzedow+=1
 
@@ -28,7 +30,7 @@ class Tabela:
         for iter in range(ile):
             tmp=[]
             for kolumna in range(self.kolumn):
-                tmp.append(0)
+                tmp.append(self.pusty)
             self.tabelka.append(tmp)
             self.rzedow+=1
 
