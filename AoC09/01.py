@@ -1,53 +1,73 @@
-class Tabela:
+class Sznur:
     def __init__(self):
-        self.pusty=0
-        self.tabelka=[ [self.pusty] ]
-        self.rzedow=1
-        self.kolumn=1
+        self.pocz=[0,0]
+        self.kon=[0,0]
+        self.odwiedzone=set()
+
+    def ile_odwiedzil(self):
+        return len(self.odwiedzone)
+
+    def gdzie_odwiedzil(self):
+        return self.odwiedzone
+
+    def poziomo(self):
+        if ( (self.pocz[1] == self.kon[1]) and (self.pocz[0] != self.kon[0]) ):
+            return True
+        else:
+            return False
 
 
-    def powieksz_z_lewej(self, ile):
-        for rzad in range(self.rzedow):
-            for kolumna in range(ile):
-                self.tabelka[rzad].insert(0,self.pusty)
-                self.kolumn+=1
+    def pionowo(self):
+        if ((self.pocz[0] == self.kon[0]) and (self.pocz[1] != self.kon[1])):
+            return True
+        else:
+            return False
 
-    def powieksz_z_prawej(self, ile):
-        for rzad in range(self.rzedow):
-            for kolumna in range(ile):
-                self.tabelka[rzad].append(self.pusty)
-                self.kolumn+=1
+    def dlugosc(self):
+        return max(abs(self.pocz[0]-self.kon[0]),abs(self.pocz[1]-self.kon[1]))
 
-    def powieksz_z_gory(self, ile):
-        for iter in range(ile):
-            tmp=[]
-            for kolumna in range(self.kolumn):
-                tmp.append(self.pusty)
-            self.tabelka.insert(0,tmp)
-            self.rzedow+=1
+    def lewo(self):
+        if (self.dlugosc() == 0):
+            self.odwiedzone.add(tuple(self.kon))
+            self.pocz-=1
+            self.odwiedzone.add(tuple(self.kon))
+        elif (self.dlugosc() == 1 and self.poziomo()):
+            self.odwiedzone.add(tuple(self.kon))
+            self.pocz[0]-=1
+            self.kon[1]-=1
+            self.odwiedzone.add(tuple(self.kon))
+        elif (self.dlugosc() == 1 and self.pionowo()):
+            self.odwiedzone.add(tuple(self.kon))
+            self.pocz[0]=self.pocz[0]-1
+            self.odwiedzone.add(tuple(self.kon))
+        #skos
+        else:
+            self.odwiedzone.add(tuple(self.kon))
+            self.pocz[0]-=1
+            self.kon[1]=self.pocz[1]
+            self.odwiedzone.add(tuple(self.kon))
 
-    def powieksz_z_dolu(self, ile):
-        for iter in range(ile):
-            tmp=[]
-            for kolumna in range(self.kolumn):
-                tmp.append(self.pusty)
-            self.tabelka.append(tmp)
-            self.rzedow+=1
 
-    def wypisz(self):
-        print("wymiary:", self.rzedow, self.kolumn)
-        for rzad in range(self.rzedow):
-            for kolumna in range(self.kolumn):
-                print(self.tabelka[rzad][kolumna])
-            print("---")
-        print("=====")
 
-tabliczka=Tabela()
-tabliczka.tabelka[0][0]=1
-tabliczka.wypisz()
-tabliczka.powieksz_z_prawej(2)
-tabliczka.powieksz_z_lewej(2)
-tabliczka.wypisz()
-tabliczka.powieksz_z_dolu(2)
-tabliczka.powieksz_z_gory(2)
-tabliczka.wypisz()
+
+
+sznurek=Sznur()
+sznurek.pocz[0]=1
+sznurek.pocz[1]=1
+
+print(sznurek.pocz, sznurek.kon)
+
+print(sznurek.dlugosc())
+print(sznurek.pionowo())
+print(sznurek.poziomo())
+
+sznurek.odwiedzone.add(tuple([0,0]))
+
+print(sznurek.lewo())
+print(sznurek.gdzie_odwiedzil())
+
+print(sznurek.lewo())
+print(sznurek.gdzie_odwiedzil())
+
+print(sznurek.lewo())
+print(sznurek.gdzie_odwiedzil())
