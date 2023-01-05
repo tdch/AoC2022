@@ -5,7 +5,7 @@ class CPU:
         self.x = 1
         self.pc = 0
         self.cycles = 0
-        self.history = [(0, self.x)]  # (cycle, x) tuples
+        self.history = [(0, self.x, 0)]  # (cycle, x, signal) tuples
 
     def run(self):
         while self.pc < len(self.program):
@@ -16,17 +16,21 @@ class CPU:
             self.x += int(instruction[1])
             self.pc += 1
             self.cycles += 2
-            self.history.append((self.cycles, self.x))
+            self.history.append((self.cycles, self.x, self.cycles * self.x))
         elif instruction[0] == 'noop':
             self.pc += 1
             self.cycles += 1
-            self.history.append((self.cycles, self.x))
+            self.history.append((self.cycles, self.x, self.cycles * self.x))
         else:
             raise ValueError(f'Invalid instruction: {instruction[0]}')
 
+
+
+# Run the program
 cpu = CPU('program.txt')
 cpu.run()
 
-for cycle, x in cpu.history:
-    if cycle == 20 or cycle % 40 == 0:
-        print(f'Cycle {cycle}: X = {x}')
+# Display the signal strength at each of the specified cycles
+for cycle, x, signal in cpu.history:
+    if cycle in [20, 60, 100, 140, 180, 220]:
+        print(f'Cycle {cycle}: X = {x}, Signal = {signal}')
