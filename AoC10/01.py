@@ -27,7 +27,7 @@ class CPU:
 
 
 # Run the program
-cpu = CPU('program.txt')
+cpu = CPU('program-1.txt')
 cpu.run()
 
 # Display the signal strength at each of the specified cycles
